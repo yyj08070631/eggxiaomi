@@ -3,9 +3,17 @@
 
 import 'egg';
 import ExportHome from '../../../app/controller/home';
+import ExportAdminAccess from '../../../app/controller/admin/access';
+import ExportAdminManager from '../../../app/controller/admin/manager';
+import ExportAdminRole from '../../../app/controller/admin/role';
 
 declare module 'egg' {
   interface IController {
     home: ExportHome;
+    admin: {
+      access: ExportAdminAccess;
+      manager: ExportAdminManager;
+      role: ExportAdminRole;
+    }
   }
 }
