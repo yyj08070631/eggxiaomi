@@ -1,6 +1,6 @@
-import { Controller } from 'egg'
+import BaseController from './base'
 
-export default class RoleController extends Controller {
+export default class RoleController extends BaseController {
   public async index (): Promise<any> {
     const { ctx } = this
     ctx.body = '角色列表'

@@ -1,6 +1,6 @@
-import { Controller } from 'egg'
+import BaseController from './base'
 
-export default class ManagerController extends Controller {
+export default class ManagerController extends BaseController {
   public async index (): Promise<any> {
     const { ctx } = this
     ctx.body = '管理员列表'

@@ -1,6 +1,6 @@
-import { Controller } from 'egg'
+import BaseController from './base'
 
-export default class AccessController extends Controller {
+export default class AccessController extends BaseController {
   public async index (): Promise<any> {
     const { ctx } = this
     ctx.body = '权限列表'
