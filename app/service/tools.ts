@@ -1,5 +1,6 @@
 import { Service } from 'egg'
 import * as svgCaptcha from 'svg-captcha'
+import * as md5 from 'md5'
 
 export default class ToolsService extends Service {
   public async captcha (): Promise<any> {
@@ -13,5 +14,8 @@ export default class ToolsService extends Service {
     })
     ctx.session.code = captcha.text // 保存验证码文案
     return captcha
+  }
+  public async md5 (str: string): Promise<string> {
+    return md5(str)
   }
 }

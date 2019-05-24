@@ -27,6 +27,13 @@ export default (appInfo: EggAppInfo) => {
     csrf: {}
   }
 
+  config.mongoose = {
+    client: {
+      url: 'mongodb://admin:123456@127.0.0.1/eggxiaomi',
+      options: {}
+    }
+  }
+
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`

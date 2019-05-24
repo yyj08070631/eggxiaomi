@@ -64,9 +64,6 @@ ol {
 a {
   text-decoration: none;
 }
-a:hover {
-  text-decoration: underline;
-}
 sup {
   vertical-align: text-top;
 }
