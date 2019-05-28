@@ -10,7 +10,7 @@ export default app => {
     status: { type: Number, default: 1 },
     role_id: { type: Schema.Types.ObjectId },
     add_time: { type: Number, default: Date.now() },
-    is_super: { type: Number }
+    is_super: { type: Number, default: 0 } // 是否超管：1-超管
   })
 
   return mongoose.model('Admin', AdminSchema, 'admin')

@@ -27,8 +27,4 @@ export default class RoleController extends BaseController {
       ctx.body = { code: 3, data: error.toString(), msg: '角色修改失败' }
     }
   }
-  public async delete (): Promise<any> {
-    const { ctx } = this
-    ctx.body = '删除角色'
-  }
 }
