@@ -6,11 +6,7 @@ export default function adminauth (): any {
     if (ctx.session.userinfo) {
       await next()
     } else {
-      ctx.body = {
-        code: 1,
-        data: {},
-        msg: '用户未登录'
-      }
+      ctx.body = { code: 1, data: {}, msg: '用户未登录' }
     }
   }
 }

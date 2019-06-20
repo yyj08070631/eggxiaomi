@@ -3,13 +3,13 @@
     <div class="login-dialog">
       <el-form ref="form" :model="form" label-width="80px" style="padding-top:30px;">
         <el-form-item label="用户名">
-          <el-input v-model="form.account" placeholder="请输入用户名"></el-input>
+          <el-input v-model="form.account" placeholder="请输入用户名" @keyup.enter.native="login"></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input v-model="form.password" placeholder="请输入密码"></el-input>
+          <el-input v-model="form.password" placeholder="请输入密码" type="password" @keyup.enter.native="login"></el-input>
         </el-form-item>
         <el-form-item label="验证码">
-          <el-input v-model="form.code" placeholder="请输入验证码" style="width:200px;"></el-input>
+          <el-input v-model="form.code" placeholder="请输入验证码" style="width:200px;" @keyup.enter.native="login"></el-input>
           <img src="/admin/code" ref="code" style="float:right;cursor:pointer;" alt="验证码" @click="reloadCode">
         </el-form-item>
         <el-form-item>
@@ -26,8 +26,8 @@ export default {
   data () {
     return {
       form: {
-        account: '',
-        password: '',
+        account: 'admin',
+        password: '123456',
         code: ''
       }
     }

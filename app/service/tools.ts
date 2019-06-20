@@ -15,7 +15,5 @@ export default class ToolsService extends Service {
     ctx.session.code = captcha.text // 保存验证码文案
     return captcha
   }
-  public async md5 (str: string): Promise<string> {
-    return md5(str)
-  }
+  public async md5 (str: string): Promise<string> { return md5(str) }
 }
