@@ -14,7 +14,7 @@
           <el-input v-model="accessForm.description" placeholder="请输入权限名称"></el-input>
         </el-form-item>
         <el-form-item label="排序" prop="sort">
-          <el-input v-model.number="accessForm.sort" placeholder="请输入权限排序"></el-input>
+          <el-input-number v-model="accessForm.sort" :precision="0"></el-input-number>
         </el-form-item>
       </el-form>
       <span slot="footer">
@@ -47,7 +47,7 @@ export default {
     // 新增权限
     appendAccess () {
       this.validateForm('accessForm').then(() => {
-        this.$axios.post('/adminapi/access/add', this.accessForm).then(res => {
+        this.$axios.post('/adminapi/access/create', this.accessForm).then(res => {
           this.$message.success('新增权限成功')
           this.$emit('close')
           this.$emit('update')
@@ -57,7 +57,7 @@ export default {
     // 修改权限
     modifyAccess () {
       this.validateForm('accessForm').then(() => {
-        this.$axios.post('/adminapi/access/edit', this.accessForm).then(res => {
+        this.$axios.post('/adminapi/access/update', this.accessForm).then(res => {
           this.$message.success('修改权限成功')
           this.$emit('close')
           this.$emit('update')

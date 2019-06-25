@@ -20,7 +20,7 @@
       <!-- 侧边栏导航 -->
       <el-container>
         <el-aside class="main-aside" width="200px">
-          <el-menu :unique-opened="true" router class="main-menu">
+          <el-menu :default-active="$route.path" unique-opened router class="main-menu">
             <el-submenu v-for="block in navigationInfo" :key="block._id" :index="block._id">
               <template slot="title">{{ block.name }}</template>
               <el-menu-item v-for="menu in block.children" :key="menu._id" :index="menu.url">{{ menu.name }}</el-menu-item>
@@ -61,7 +61,7 @@ export default {
       this.$store.commit('setUserInfo', res.data)
     })
     // get auth navigation menu and auth operation menu
-    this.$axios.get('/adminapi/access').then(res => {
+    this.$axios.get('/adminapi/access/auth').then(res => {
       this.$store.commit('setAuthInfo', res.data)
     })
   }

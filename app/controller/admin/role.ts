@@ -3,7 +3,8 @@ import BaseController from './base'
 export default class RoleController extends BaseController {
   public async index (): Promise<any> {
     const { ctx } = this
-    let result = await ctx.model.Role.find({})
+    let result = await ctx.model.Role.aggregate()
+      .lookup({ from: 'role', localField: '_id', foreignField: 'role_id', as: 'auth' })
     ctx.body = { code: 0, data: result, msg: '列表查询成功' }
   }
   public async add (): Promise<any> {

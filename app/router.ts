@@ -8,7 +8,6 @@ export default (app: Application) => {
   router.post('/admin/login', controller.admin.login.login)
   router.get('/admin/logout', controller.admin.login.logout)
   router.get('/adminapi/user/info', controller.admin.login.getUserInfo)
-  router.post('/adminapi/delete', controller.admin.base.delete)
   // 用户管理
   router.get('/adminapi/manager', controller.admin.manager.index)
   router.post('/adminapi/manager/add', controller.admin.manager.add)
@@ -18,8 +17,9 @@ export default (app: Application) => {
   router.post('/adminapi/role/add', controller.admin.role.add)
   router.post('/adminapi/role/edit', controller.admin.role.edit)
   // 权限管理
-  router.get('/adminapi/access', controller.admin.access.index)
-  router.get('/adminapi/access/global', controller.admin.access.global)
-  router.post('/adminapi/access/add', controller.admin.access.add)
-  router.post('/adminapi/access/edit', controller.admin.access.edit)
+  router.get('/adminapi/access/auth', controller.admin.access.auth)
+  router.get('/adminapi/access/list', controller.admin.access.list)
+  router.post('/adminapi/access/create', controller.admin.access.create)
+  router.post('/adminapi/access/update', controller.admin.access.update)
+  router.post('/adminapi/access/delete', controller.admin.access.delete)
 }
