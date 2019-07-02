@@ -1,6 +1,6 @@
 import { Context } from 'egg'
-import BaseController from './base'
-import AccessService from '../../service/admin/system/access'
+import BaseController from '../base'
+import AccessService from '../../../service/admin/system/access'
 
 export default class AccessController extends BaseController {
   public operator: AccessService = this.service.admin.system.access

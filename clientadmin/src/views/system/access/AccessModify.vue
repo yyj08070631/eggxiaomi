@@ -2,7 +2,7 @@
   <div class="access-modify">
     <el-dialog :title="title"
       :visible.sync="visible"
-      @close="$emit('close')">
+      @closed="$emit('close')">
       <el-form :model="accessForm" :rules="accessFormRules" ref="accessForm" label-width="100px">
         <el-form-item label="权限名称" prop="name">
           <el-input v-model="accessForm.name" placeholder="请输入权限名称"></el-input>
@@ -11,7 +11,7 @@
           <el-input v-model="accessForm.url" placeholder="请输入访问地址"></el-input>
         </el-form-item>
         <el-form-item label="权限描述" prop="description">
-          <el-input v-model="accessForm.description" placeholder="请输入权限名称"></el-input>
+          <el-input v-model="accessForm.description" placeholder="请输入权限描述"></el-input>
         </el-form-item>
         <el-form-item label="排序" prop="sort">
           <el-input-number v-model="accessForm.sort" :precision="0"></el-input-number>
@@ -47,7 +47,7 @@ export default {
     // 新增权限
     appendAccess () {
       this.validateForm('accessForm').then(() => {
-        this.$axios.post('/adminapi/access/create', this.accessForm).then(res => {
+        this.$axios.post('/adminapi/access_create', this.accessForm).then(res => {
           this.$message.success('新增权限成功')
           this.$emit('close')
           this.$emit('update')
@@ -57,7 +57,7 @@ export default {
     // 修改权限
     modifyAccess () {
       this.validateForm('accessForm').then(() => {
-        this.$axios.post('/adminapi/access/update', this.accessForm).then(res => {
+        this.$axios.post('/adminapi/access_update', this.accessForm).then(res => {
           this.$message.success('修改权限成功')
           this.$emit('close')
           this.$emit('update')

@@ -1,26 +1,28 @@
 <template>
   <div v-loading.body="loading" class="access">
-    <!-- 添加一级节点按钮 -->
-    <el-button type="primary" size="mini" style="margin-bottom:20px;" @click="appendAccessNode({ _id: '', type: 0, name: '根' })">添加一级节点</el-button>
-    <!-- 权限树结构 -->
-    <el-table :data="list"
-      border
-      default-expand-all
-      row-key="_id"
-      style="width:100%;">
-      <el-table-column prop="name" label="名称" width="150"></el-table-column>
-      <el-table-column prop="description" label="描述"></el-table-column>
-      <el-table-column prop="url" label="路由地址"></el-table-column>
-      <el-table-column prop="add_time" label="创建时间" width="160" :formatter="(row, column, cellValue) => formatDate(cellValue)"></el-table-column>
-      <el-table-column prop="sort" label="排序" width="60"></el-table-column>
-      <el-table-column label="操作" width="130" align="center" header-align="left">
-        <template slot-scope="{ row }">
-          <el-button v-if="row.type < 3" type="text" @click="appendAccessNode(row)">新建</el-button>
-          <el-button type="text" @click="modifyAccessNode(row)">编辑</el-button>
-          <el-button type="text" @click="removeAccessNode(row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <el-card>
+      <!-- 添加一级节点按钮 -->
+      <el-button type="primary" style="margin-bottom:12px;" @click="appendAccessNode({ _id: '', type: 0, name: '根' })">添加一级节点</el-button>
+      <!-- 权限树结构 -->
+      <el-table :data="list"
+        border
+        default-expand-all
+        row-key="_id"
+        style="width:100%;">
+        <el-table-column prop="name" label="名称" width="150"></el-table-column>
+        <el-table-column prop="description" label="描述"></el-table-column>
+        <el-table-column prop="url" label="路由地址"></el-table-column>
+        <el-table-column prop="add_time" label="创建时间" width="160" :formatter="(row, column, cellValue) => formatDate(cellValue)"></el-table-column>
+        <el-table-column prop="sort" label="排序" width="60"></el-table-column>
+        <el-table-column label="操作" width="130" align="center" header-align="left">
+          <template slot-scope="{ row }">
+            <el-button v-if="row.type < 3" type="text" @click="appendAccessNode(row)">新建</el-button>
+            <el-button type="text" @click="modifyAccessNode(row)">编辑</el-button>
+            <el-button type="text" @click="removeAccessNode(row)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
     <!-- 添加/修改权限弹窗 -->
     <access-modify :visible="visible" :title="title" :default-data="defaultData" @update="init" @close="visible = false"></access-modify>
   </div>
@@ -40,11 +42,10 @@ export default {
     AccessModify
   },
   data: () => ({
-    LIST_URL: '/adminapi/access/list',
+    LIST_URL: '/adminapi/access_list',
     visible: false, // 添加/修改权限弹窗开关
     title: '', // 新增/修改弹窗的标题
-    // 新增/修改需要传入的默认数据
-    defaultData: new AccessDataModel({})
+    defaultData: new AccessDataModel({}) // 新增/修改需要传入的默认数据
   }),
   methods: {
     // 添加权限节点
@@ -58,7 +59,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$axios.post('/adminapi/access/delete', {
+        this.$axios.post('/adminapi/access_delete', {
           _id: data._id
         }).then(res => {
           this.$message.success('删除权限成功')

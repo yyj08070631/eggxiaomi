@@ -19,13 +19,8 @@ export default class BaseService extends Service {
   public async create (data: object): Promise<any> {
     let { currModel } = this
     let dataModel = new currModel(data)
-    let doc: Document
-    try {
-      doc = await dataModel.save()
-      return { code: Code.成功, data: doc, msg: '添加成功' }
-    } catch (error) {
-      return { code: Code.通用错误代码, data: {}, msg: '添加失败' }
-    }
+    let doc: Document = await dataModel.save()
+    return { code: Code.成功, data: doc, msg: '添加成功' }
   }
   /**
    * @description 修改文档
@@ -36,13 +31,8 @@ export default class BaseService extends Service {
    */
   public async update (_id: string, data: object): Promise<any> {
     let { currModel } = this
-    let doc = null
-    try {
-      doc = await currModel.update({ _id }, data)
-      return { code: Code.成功, data: doc, msg: '更新成功' }
-    } catch (error) {
-      return { code: Code.通用错误代码, data: {}, msg: '更新失败' }
-    }
+    let doc = await currModel.update({ _id }, data)
+    return { code: Code.成功, data: doc, msg: '更新成功' }
   }
   /**
    * @param {number} pageIndex 页码
@@ -54,14 +44,15 @@ export default class BaseService extends Service {
    * @memberof BaseService
    * @returns {object} 返回信息
    */
-  public async list (pageIndex: number = 1, pageSize: number = 15, where: any = {}, sort: object = {}, filter: object = {}, search: string = ''): Promise<any> {
+  public async list (pageIndex: string = '1', pageSize: string = '15', where: any = '{}', sort: string = '{}', filter: string = '', search: string = ''): Promise<any> {
     let { ctx, currModel } = this
     // format pageIndex
-    pageIndex = Math.abs(Math.floor(pageIndex)) || 1
+    let pageIndexNum: number = Math.abs(parseInt(pageIndex, 0)) || 1
     // format pageSize
-    pageSize = Math.abs(Math.floor(pageSize))
-    pageSize = isNaN(pageSize) ? 15 : pageSize
+    let pageSizeNum: number = Math.abs(parseInt(pageSize, 0))
+    pageSizeNum = isNaN(pageSizeNum) ? 15 : pageSizeNum
     // format search & where
+    where = JSON.parse(where)
     if (search && this.searchFields.length > 0) {
       search = search.trim()
       search = ctx.helper.escapeWords(search)
@@ -78,16 +69,13 @@ export default class BaseService extends Service {
         delete where[k]
       }
     }
+    where = Object.assign(where, { status: 1 })
+    // format sort
+    sort = JSON.parse(sort)
     // start query
-    let list: any[] = []
-    let total: number = 0
-    try {
-      list = await currModel.find(where, filter).sort(sort).skip((pageIndex - 1) * pageSize)
-      total = await currModel.count(where)
-      return { code: Code.成功, data: { list, total }, msg: '查询成功' }
-    } catch (error) {
-      return { code: Code.通用错误代码, data: {}, msg: '查询失败' }
-    }
+    let list: any[] = await currModel.find(where, filter).sort(sort).skip((pageIndexNum - 1) * pageSizeNum)
+    let total: number = await currModel.countDocuments(where)
+    return { code: Code.成功, data: { list, total }, msg: '查询成功' }
   }
   /**
    * @description 查询一行数据
@@ -97,13 +85,8 @@ export default class BaseService extends Service {
    */
   public async detail (_id: string): Promise<any> {
     let { currModel } = this
-    let doc: Document | null
-    try {
-      doc = await currModel.findById(_id)
-      return { code: Code.成功, data: doc, msg: '查询成功' }
-    } catch (error) {
-      return { code: Code.通用错误代码, data: {}, msg: '查询失败' }
-    }
+    let doc: Document | null = await currModel.findById(_id)
+    return { code: Code.成功, data: doc, msg: '查询成功' }
   }
   /**
    * @description 删除数据

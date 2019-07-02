@@ -5,6 +5,7 @@ import 'egg';
 import ExportTools from '../../../app/service/tools';
 import ExportAdminBase from '../../../app/service/admin/base';
 import ExportAdminSystemAccess from '../../../app/service/admin/system/access';
+import ExportAdminSystemRole from '../../../app/service/admin/system/role';
 
 declare module 'egg' {
   interface IService {
@@ -13,6 +14,7 @@ declare module 'egg' {
       base: ExportAdminBase;
       system: {
         access: ExportAdminSystemAccess;
+        role: ExportAdminSystemRole;
       }
     }
   }

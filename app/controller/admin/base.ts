@@ -45,7 +45,7 @@ export default class BaseController extends Controller {
   public async list (): Promise<any> {
     let { ctx, operator } = this
     if (!operator) { return null }
-    let { pageIndex, pageSize, where, sort, filter, search } = ctx.request.body
+    let { pageIndex, pageSize, where, sort, filter, search } = ctx.request.query
     ctx.body = await operator.list(pageIndex, pageSize, where, sort, filter, search)
   }
   /**

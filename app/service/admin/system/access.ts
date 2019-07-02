@@ -112,6 +112,7 @@ export default class AccessService extends BaseService {
   /**
    * @description 新建权限
    * @param {object} data 新建文档数据
+   * @returns {Document} 新建的权限文档
    * @memberof AccessService
    */
   public async create (data: Access): Promise<any> {
@@ -124,6 +125,7 @@ export default class AccessService extends BaseService {
    * @description 更新权限
    * @param {string} _id 要更新文档的 _id
    * @param {object} data 新建文档数据
+   * @returns {Document} 更新的权限文档
    * @memberof AccessService
    */
   public async update (_id: string ,data: Access): Promise<any> {

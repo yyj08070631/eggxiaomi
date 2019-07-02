@@ -57,11 +57,11 @@ export default {
   },
   created () {
     // get user info
-    this.$axios.get('/adminapi/user/info').then(res => {
+    this.$axios.get('/adminapi/user_info').then(res => {
       this.$store.commit('setUserInfo', res.data)
     })
     // get auth navigation menu and auth operation menu
-    this.$axios.get('/adminapi/access/auth').then(res => {
+    this.$axios.get('/adminapi/access_auth').then(res => {
       this.$store.commit('setAuthInfo', res.data)
     })
   }

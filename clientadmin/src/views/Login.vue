@@ -6,7 +6,7 @@
           <el-input v-model="form.account" placeholder="请输入用户名" @keyup.enter.native="login"></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input v-model="form.password" placeholder="请输入密码" type="password" @keyup.enter.native="login"></el-input>
+          <el-input v-model="form.password" placeholder="请输入密码" show-password @keyup.enter.native="login"></el-input>
         </el-form-item>
         <el-form-item label="验证码">
           <el-input v-model="form.code" placeholder="请输入验证码" style="width:200px;" @keyup.enter.native="login"></el-input>

@@ -1,4 +1,4 @@
-import BaseController from './base'
+import BaseController from '../base'
 
 export default class ManagerController extends BaseController {
   public async index (): Promise<any> {

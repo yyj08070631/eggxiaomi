@@ -3,21 +3,23 @@
 
 import 'egg';
 import ExportHome from '../../../app/controller/home';
-import ExportAdminAccess from '../../../app/controller/admin/access';
 import ExportAdminBase from '../../../app/controller/admin/base';
 import ExportAdminLogin from '../../../app/controller/admin/login';
-import ExportAdminManager from '../../../app/controller/admin/manager';
-import ExportAdminRole from '../../../app/controller/admin/role';
+import ExportAdminSystemAccess from '../../../app/controller/admin/system/access';
+import ExportAdminSystemManager from '../../../app/controller/admin/system/manager';
+import ExportAdminSystemRole from '../../../app/controller/admin/system/role';
 
 declare module 'egg' {
   interface IController {
     home: ExportHome;
     admin: {
-      access: ExportAdminAccess;
       base: ExportAdminBase;
       login: ExportAdminLogin;
-      manager: ExportAdminManager;
-      role: ExportAdminRole;
+      system: {
+        access: ExportAdminSystemAccess;
+        manager: ExportAdminSystemManager;
+        role: ExportAdminSystemRole;
+      }
     }
   }
 }
