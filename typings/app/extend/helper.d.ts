@@ -1,9 +1,9 @@
-// This file is created by egg-ts-helper@1.25.2
+// This file is created by egg-ts-helper@1.25.5
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
 import ExtendIHelper from '../../../app/extend/helper';
+type ExtendIHelperType = typeof ExtendIHelper;
 declare module 'egg' {
-  type ExtendIHelperType = typeof ExtendIHelper;
   interface IHelper extends ExtendIHelperType { }
 }

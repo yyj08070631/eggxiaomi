@@ -3,6 +3,7 @@ import { Application } from 'egg'
 export default (app: Application) => {
   const { controller, router } = app
   // 通用
+  router.get('/', controller.home.index)
   router.get('/admin', controller.home.admin)
   router.get('/admin/code', controller.admin.base.code)
   router.post('/admin/login', controller.admin.login.login)

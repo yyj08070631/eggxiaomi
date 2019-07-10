@@ -1,6 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es2017",
     "module": "commonjs",
     "strict": true,
@@ -19,8 +20,9 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "inlineSourceMap": true,
-    "importHelpers": true
+    "sourceMap": true,
+    "importHelpers": true,
+    "strictNullChecks": true
   },
   "exclude": [
     "app/public",

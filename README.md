@@ -2,10 +2,11 @@
 
 ## 模块
 
+* ~~管理站 vue spa 搭建~~
 * ~~BaseController~~
 * ~~BaseService~~
 * ~~RBAC 权限管理~~
-* 商品管理
+* 主站 vue ssr 搭建
 
 ## 在项目中实践 Git-Commit-Log 规范
 
